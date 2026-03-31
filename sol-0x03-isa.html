@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=2N_sDSC0" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://bpf.wtf/sol-0x03-isa/","20231004134038","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1696426838");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>~bpf.sol | 0x03: SBF Instruction Set</title>
+    <link rel="preconnect" href="https://web.archive.org/web/20231004134038/https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://web.archive.org/web/20231004134038/https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://web.archive.org/web/20231004134038cs_/https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap">
+    <link rel="stylesheet" href="https://web.archive.org/web/20231004134038cs_/https://bpf.wtf/assets/built/screen.css?v=9f2531ced7">
+
+    <meta name="description" content="This page lists all Solana Bytecode Format (SBF) opcodes.  The family of eBPF ISAs lacks a specification document as you may know it from other architectures. Instead, each flavor of eBPF is defined by its VM implementation.">
+    <link rel="canonical" href="https://web.archive.org/web/20231004134038/https://bpf.wtf/sol/0x03-isa">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="bpf.wtf">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="~bpf.sol | 0x03: SBF Instruction Set">
+    <meta property="og:description" content="All Solana Bytecode Format (SBF) opcodes">
+    <meta property="og:url" content="https://web.archive.org/web/20231004134038/https://bpf.wtf/sol/0x03-isa">
+    <meta property="article:published_time" content="2022-07-08T16:26:17.000Z">
+    <meta property="article:modified_time" content="2022-08-04T21:12:18.000Z">
+    <meta property="article:tag" content="Solana BPF Series">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="~bpf.sol | 0x03: SBF Instruction Set">
+    <meta name="twitter:description" content="All Solana Bytecode Format (SBF) opcodes">
+    <meta name="twitter:url" content="https://web.archive.org/web/20231004134038im_/https://bpf.wtf/sol/0x03-isa">
+    <meta name="twitter:image" content="https://web.archive.org/web/20231004134038im_/https://bpf.wtf/content/images/2022/07/tg_image_2165843312.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Richard Patel">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Solana BPF Series">
+    <meta name="twitter:creator" content="@terorie_dev">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://web.archive.org/web/20231004134038/https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "bpf.wtf",
+        "url": "https://web.archive.org/web/20231004134038/https://bpf.wtf/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20231004134038/https://bpf.wtf/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Richard Patel",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20231004134038/https://bpf.wtf/content/images/2022/04/Fd_YbBrD_400x400.jpeg",
+            "width": 342,
+            "height": 342
+        },
+        "url": "https://web.archive.org/web/20231004134038/https://bpf.wtf/author/terorie/",
+        "sameAs": [
+            "https://web.archive.org/web/20231004134038/https://github.com/terorie",
+            "https://web.archive.org/web/20231004134038/https://twitter.com/terorie_dev"
+        ]
+    },
+    "headline": "~bpf.sol | 0x03: SBF Instruction Set",
+    "url": "https://web.archive.org/web/20231004134038/https://bpf.wtf/sol-0x03-isa/",
+    "datePublished": "2022-07-08T16:26:17.000Z",
+    "dateModified": "2022-08-04T21:12:18.000Z",
+    "keywords": "Solana BPF Series",
+    "description": "All Solana Bytecode Format (SBF) opcodes",
+    "mainEntityOfPage": "https://web.archive.org/web/20231004134038/https://bpf.wtf/sol-0x03-isa/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.66">
+    <link rel="alternate" type="application/rss+xml" title="bpf.wtf" href="https://web.archive.org/web/20231004134038/https://bpf.wtf/rss/">
+    
+    <script defer src="https://web.archive.org/web/20231004134038js_/https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="01f7155cf059f664c37b3d4cfe" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://bpf-wtf.ghost.io/" crossorigin="anonymous"></script>
+    
+    <link href="https://bpf.wtf/webmentions/receive/" rel="webmention">
+    <script defer src="/web/20231004134038js_/https://bpf.wtf/public/cards.min.js?v=9f2531ced7"></script>
+    <link rel="stylesheet" type="text/css" href="/web/20231004134038cs_/https://bpf.wtf/public/cards.min.css?v=9f2531ced7">
+    <script src="https://web.archive.org/web/20231004134038js_/https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js" integrity="" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://web.archive.org/web/20231004134038js_/https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js" integrity="" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+.members-subscribe, .members-login {
+  display: none;    
+}
+.kg-bookmark-thumbnail {
+  display: none;
+}
+.gh-subscribe, .gh-head-actions, .gh-head-btn, .gh-signup {
+  display: none;
+}
+table.custom-table-code {
+  min-width: 650px;
+}
+.custom-table-code thead {
+  text-align: left;
+}
+.custom-table-code tbody {
+  font-family: var(--font-mono);
+}
+.custom-table-code tbody a {
+  text-decoration: none;
+}
+
+    
+.token.atrule,
+.token.attr-value,
+.token.class-name,
+.token.keyword {
+    color: #1990b8
+}
+.token.block-comment,
+.token.cdata,
+.token.comment,
+.token.doctype,
+.token.prolog {
+    color: #7d8b99
+}
+.token.punctuation {
+    color: #5f6364
+}
+.token.boolean,
+.token.constant,
+.token.deleted,
+.token.function-name,
+.token.number,
+.token.property,
+.token.property > *,
+.token.symbol,
+.token.tag {
+    color: #c92c2c
+}
+.token.attr-name,
+.token.builtin,
+.token.char,
+.token.function,
+.token.inserted,
+.token.selector,
+.token.string {
+    color: #2f9c0a
+}
+.token.entity,
+.token.operator,
+.token.url,
+.token.variable {
+    color: #a67f59;
+    background: rgba(255, 255, 255, .5)
+}
+.token.important,
+.token.regex {
+    color: #e90
+}
+.language-css .token.string,
+.style .token.string {
+    color: #a67f59;
+    background: rgba(255, 255, 255, .5)
+}
+.token.important {
+    font-weight: 400
+}
+
+.token.bold {
+    font-weight: 700
+}
+
+.token.italic {
+    font-style: italic
+}
+.token.entity {
+    cursor: help
+}
+.token.namespace {
+    opacity: .7
+}
+</style><style>:root {--ghost-accent-color: #9a45ff;}</style>
+</head>
+
+<body class="post-template tag-sol is-head-b--a_n has-serif-title">
+    <div class="gh-site">
+        <header id="gh-head" class="gh-head gh-outer">
+            <div class="gh-head-inner gh-inner">
+                <div class="gh-head-brand">
+                    <a class="gh-head-logo" href="https://web.archive.org/web/20231004134038/https://bpf.wtf/">
+                            bpf.wtf
+                    </a>
+                    <button class="gh-burger"></button>
+                </div>
+
+                <nav class="gh-head-menu">
+                    <ul class="nav">
+    <li class="nav-home"><a href="https://web.archive.org/web/20231004134038/https://bpf.wtf/">Home</a></li>
+    <li class="nav-bpf-sol"><a href="https://web.archive.org/web/20231004134038/https://bpf.wtf/tag/sol/">bpf.sol</a></li>
+</ul>
+
+                </nav>
+
+                <div class="gh-head-actions">
+                        <a class="gh-head-btn" href="#/portal/signup" data-portal="signup">
+                            <svg width="20" height="20" viewbox="0 0 20 20" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3.33332 3.33334H16.6667C17.5833 3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667 16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334 2.41666 3.33334 3.33332 3.33334Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.3333 5L9.99999 10.8333L1.66666 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>                            Subscribe
+                        </a>
+                </div>
+            </div>
+        </header>
+
+        
+
+<main id="gh-main" class="gh-main">
+    <article class="gh-article post tag-sol no-image">
+        <header class="gh-article-header gh-canvas">
+                <span class="gh-article-meta">
+                    By <a href="/web/20231004134038/https://bpf.wtf/author/terorie/">Richard Patel</a>
+                        in
+                        <a class="gh-article-tag" href="https://web.archive.org/web/20231004134038/https://bpf.wtf/tag/sol/">Solana BPF Series</a>
+                    —
+                    <time datetime="2022-07-08">Jul 8, 2022</time>
+                </span>
+
+            <h1 class="gh-article-title">~bpf.sol | 0x03: SBF Instruction Set</h1>
+
+                <p class="gh-article-excerpt">All Solana Bytecode Format (SBF) opcodes</p>
+
+        </header>
+
+        <div class="gh-content gh-canvas">
+            <h3 id="sources">Sources</h3><p>The family of eBPF ISAs lacks a specification document as you may know it from other architectures. Instead, each flavor of eBPF is defined by its VM implementation. As such, Solana's SBF is currently defined by the <a href="https://web.archive.org/web/20231004134038/https://docs.rs/solana_rbpf?ref=bpf.wtf">solana_rbpf</a> Rust crate.</p><p>All info below was compiled together from these sources:</p><ul><li><code>solana_rbpf::ebpf</code>, which defines SBF opcodes.<br> <a href="https://web.archive.org/web/20231004134038/https://github.com/solana-labs/rbpf/blob/main/src/ebpf.rs?ref=bpf.wtf">https://github.com/solana-labs/rbpf/blob/main/src/ebpf.rs</a></li><li><code>solana_rbpf::disassembler</code>, which implements rbpf-style disassembly.<br><a href="https://web.archive.org/web/20231004134038/https://github.com/solana-labs/rbpf/blob/main/src/disassembler.rs?ref=bpf.wtf">https://github.com/solana-labs/rbpf/blob/main/src/disassembler.rs</a></li><li>The <code>BPF</code> target of Solana's LLVM fork, which defines the register model, bytecode encoding, and pseudocode assembly form.<br><a href="https://web.archive.org/web/20231004134038/https://github.com/solana-labs/llvm-project/tree/solana-rustc/13.0-2021-09-30/llvm/lib/Target/BPF?ref=bpf.wtf">https://github.com/solana-labs/llvm-project/tree/solana-rustc/13.0-2021-09-30/llvm/lib/Target/BPF</a></li><li>The Capstone <code>BPF</code> backend, which includes an eBPF disassembler<br><a href="https://web.archive.org/web/20231004134038/https://github.com/capstone-engine/capstone/tree/next/arch/BPF?ref=bpf.wtf">https://github.com/capstone-engine/capstone/tree/next/arch/BPF</a></li></ul><p>Note: This source is not authoritative. It may be outdated or conflict with actual on-chain behavior. If you find any such bugs, please consider sending corrections. And if this document helps you build software, please attribute this source – thanks! </p><h3 id="assembler">Assembler</h3><p>Several flavors of SBF disassembly exist. Unfortunately, they are not mutually compatible.</p><ul><li>rbpf-style: prefix notation with C-style indirect addressing.<br>Seen in <code>rbpf-cli</code> and tools based on the Rust implementation of Solana.</li><li>Capstone-style: similar to rbpf-style with different ALU mnemonics.<br>Seen in binary analysis tools like <code>radare2</code>.</li><li>LLVM-style: infix notation resembling C pseudocode.<br>Seen with LLVM tools used in the build process.</li></ul><h3 id="opcode-tables">Opcode Tables</h3><h4 id="legacy-loadstore-class">Legacy Load/Store class</h4><p>The <code>BPF_LD</code> opcode family consists of special purpose opcodes inherited from Linux eBPF where they were used to access network packet input data.</p><!--kg-card-begin: markdown--><table class="custom-table-code">
+<thead>
+<tr>
+<th>Opcode</th>
+<th>rbpf</th>
+<th>Capstone</th>
+<th>LLVM</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x18</td>
+<td>lddw</td>
+<td>lddw</td>
+<td>r1 = 0x42 ll</td>
+<td>Two insns long</td>
+</tr>
+<tr>
+<td>0x30</td>
+<td>ldabsb</td>
+<td></td>
+<td>r1 = *(u8&nbsp; *)skb[3]</td>
+<td>Deprecated</td>
+</tr>
+<tr>
+<td>0x28</td>
+<td>ldabsh</td>
+<td></td>
+<td>r1 = *(u16 *)skb[3]</td>
+<td>Deprecated</td>
+</tr>
+<tr>
+<td>0x20</td>
+<td>ldabsw</td>
+<td></td>
+<td>r1 = *(u32 *)skb[3]</td>
+<td>Deprecated</td>
+</tr>
+<tr>
+<td>0x38</td>
+<td>ldabsdw</td>
+<td></td>
+<td>r1 = *(u64 *)skb[3]</td>
+<td>Deprecated</td>
+</tr>
+<tr>
+<td>0x50</td>
+<td>ldindb</td>
+<td></td>
+<td>r1 = *(u8  *)skb[r0]</td>
+<td>Deprecated</td>
+</tr>
+<tr>
+<td>0x48</td>
+<td>ldindh</td>
+<td></td>
+<td>r1 = *(u16 *)skb[r0]</td>
+<td>Deprecated</td>
+</tr>
+<tr>
+<td>0x40</td>
+<td>ldindw</td>
+<td></td>
+<td>r1 = *(u32 *)skb[r0]</td>
+<td>Deprecated</td>
+</tr>
+<tr>
+<td>0x58</td>
+<td>ldinddw</td>
+<td></td>
+<td>r1 = *(u64 *)skb[r0]</td>
+<td>Deprecated</td>
+</tr>
+</tbody>
+</table><!--kg-card-end: markdown--><p><code>ldabs*</code> used to access instruction input data starting at <code>0x4_0000_0000</code> and <code>ldind*</code> was the indirect version thereof. These instructions are disabled now and have been replaced by the new load/store class.</p><p>Only <code>lddw</code> remains enabled on mainnet today. It moves a 64-bit immediate into a GPR. This makes it more of a 64-bit variant of <code>mov32</code> than an actual load instruction. (Note that <code>mov64</code> with an immediate is a synonym to <code>mov32</code> – the name is misleading).</p><h4 id="loadstore-class">Load/Store class</h4><p>The <code>BPF_LDX</code> and <code>BPF_STX</code> classes provide common memory operations.<br>Memory is referenced using a base address from a GPR and an immediate offset.</p><p>Three operation groups are available:</p><ul><li><code>ldx*</code>: Load value from memory into register (8-bit, 16-bit, 32-bit, 64-bit)</li><li><code>st*</code>: Store immediate value into memory (8-bit, 16-bit, 32-bit, 32-bit zero extended to 64-bit)</li><li><code>stx*</code>: Store value from register into memory (8-bit, 16-bit, 32-bit, 64-bit)</li></ul><!--kg-card-begin: markdown--><table class="custom-table-code">
+<thead>
+<tr>
+<th>Opcode</th>
+<th>rbpf</th>
+<th>Capstone</th>
+<th>LLVM</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x71</td>
+<td>ldxb</td>
+<td>ldxb</td>
+<td>r1 = *(u8  *)(r2 + 42)</td>
+</tr>
+<tr>
+<td>0x69</td>
+<td>ldxh</td>
+<td>ldxh</td>
+<td>r1 = *(u16 *)(r2 + 42)</td>
+</tr>
+<tr>
+<td>0x61</td>
+<td>ldxw</td>
+<td>ldxw</td>
+<td>r1 = *(u32 *)(r2 + 42)</td>
+</tr>
+<tr>
+<td>0x79</td>
+<td>ldxdw</td>
+<td>ldxdw</td>
+<td>r1 = *(u64 *)(r2 + 42)</td>
+</tr>
+<tr>
+<td>0x72</td>
+<td>stb</td>
+<td>stb</td>
+<td>*(u8  *)(r2 + 42) = 69</td>
+</tr>
+<tr>
+<td>0x6a</td>
+<td>sth</td>
+<td>sth</td>
+<td>*(u16 *)(r2 + 42) = 69</td>
+</tr>
+<tr>
+<td>0x62</td>
+<td>stw</td>
+<td>stw</td>
+<td>*(u32 *)(r2 + 42) = 69</td>
+</tr>
+<tr>
+<td>0x7a</td>
+<td>stdw</td>
+<td>stdw</td>
+<td>*(u64 *)(r2 + 42) = 69</td>
+<td>Immediate is 32-bit</td>
+</tr>
+<tr>
+<td>0x73</td>
+<td>stxb</td>
+<td>stxb</td>
+<td>*(u8  *)(r2 + 42) = r1</td>
+</tr>
+<tr>
+<td>0x6b</td>
+<td>stxh</td>
+<td>stxh</td>
+<td>*(u16 *)(r2 + 42) = r1</td>
+</tr>
+<tr>
+<td>0x63</td>
+<td>stxw</td>
+<td>stxw</td>
+<td>*(u32 *)(r2 + 42) = r1</td>
+</tr>
+<tr>
+<td>0x7b</td>
+<td>stxdw</td>
+<td>stxdw</td>
+<td>*(u64 *)(r2 + 42) = r1</td>
+</tr>
+</tbody>
+</table><!--kg-card-end: markdown--><h4 id="64-bit-alu-class">64-bit ALU class</h4><p>The 64-bit ALU instructions operate on general-purpose registers. The stack pointer (r10) can only be used as a source operand.</p><p>Each operation has two forms:</p><ul><li>rD ← OP(rD, imm)</li><li>rD ← OP(rD, rS)</li></ul><!--kg-card-begin: markdown--><table class="custom-table-code">
+<thead>
+<tr>
+<th>Opcode</th>
+<th>rbpf</th>
+<th>Capstone</th>
+<th>LLVM</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x07</td>
+<td>add64</td>
+<td>add64</td>
+<td>r1 += 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x0f</td>
+<td>add64</td>
+<td>add64</td>
+<td>r1 += r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0x17</td>
+<td>sub64</td>
+<td>sub64</td>
+<td>r1 -= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x1f</td>
+<td>sub64</td>
+<td>sub64</td>
+<td>r1 -= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0x27</td>
+<td>mul64</td>
+<td>mul64</td>
+<td>r1 *= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x2f</td>
+<td>mul64</td>
+<td>mul64</td>
+<td>r1 *= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0x37</td>
+<td>div64</td>
+<td>div64</td>
+<td>r1 /= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x3f</td>
+<td>div64</td>
+<td>div64</td>
+<td>r1 /= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0x47</td>
+<td>or64</td>
+<td>or64</td>
+<td>r1 &#124;= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x4f</td>
+<td>or64</td>
+<td>or64</td>
+<td>r1 &#124;= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0x57</td>
+<td>and64</td>
+<td>and64</td>
+<td>r1 &amp;= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x5f</td>
+<td>and64</td>
+<td>and64</td>
+<td>r1 &amp;= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0x67</td>
+<td>lsh64</td>
+<td>lsh64</td>
+<td>r1 &lt;&lt;= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x6f</td>
+<td>lsh64</td>
+<td>lsh64</td>
+<td>r1 &lt;&lt;= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0x77</td>
+<td>rsh64</td>
+<td>rsh64</td>
+<td>r1 &gt;&gt;= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x7f</td>
+<td>rsh64</td>
+<td>rsh64</td>
+<td>r1 &gt;&gt;= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0x87</td>
+<td>neg64</td>
+<td>neg64</td>
+<td>r1 = -r1</td>
+<td></td>
+</tr>
+<tr>
+<td>0x97</td>
+<td>mod64</td>
+<td>mod64</td>
+<td>r1 %= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0x9f</td>
+<td>mod64</td>
+<td>mod64</td>
+<td>r1 %= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0xa7</td>
+<td>xor64</td>
+<td>xor64</td>
+<td>r1 ^= 0x42</td>
+<td></td>
+</tr>
+<tr>
+<td>0xaf</td>
+<td>xor64</td>
+<td>xor64</td>
+<td>r1 ^= r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0xb7</td>
+<td>mov64</td>
+<td>mov64</td>
+<td>r1 = 0x42</td>
+<td>same as mov32</td>
+</tr>
+<tr>
+<td>0xbf</td>
+<td>mov64</td>
+<td>mov64</td>
+<td>r1 = r2</td>
+<td></td>
+</tr>
+<tr>
+<td>0xc7</td>
+<td>arsh64</td>
+<td>arsh64</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0xcf</td>
+<td>arsh64</td>
+<td>arsh64</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0xe7</td>
+<td>sdiv64</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0xef</td>
+<td>sdiv64</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><!--kg-card-end: markdown--><h4 id="32-bit-alu-class">32-bit ALU class</h4><p>The 32-bit ALU instructions mostly follow their 64-bit counterparts. They operate on the lower word of the input registers. The upper half of destination registers gets implicitly zeroed.</p><!--kg-card-begin: markdown--><table class="custom-table-code">
+<thead>
+<tr>
+<th>Opcode</th>
+<th>rbpf</th>
+<th>Capstone</th>
+<th>LLVM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x04</td>
+<td>add32</td>
+<td>add</td>
+<td>w1 += 0x42</td>
+</tr>
+<tr>
+<td>0x0c</td>
+<td>add32</td>
+<td>add</td>
+<td>w1 += w2</td>
+</tr>
+<tr>
+<td>0x14</td>
+<td>sub32</td>
+<td>sub</td>
+<td>w1 -= 0x42</td>
+</tr>
+<tr>
+<td>0x1c</td>
+<td>sub32</td>
+<td>sub</td>
+<td>w1 -= w2</td>
+</tr>
+<tr>
+<td>0x24</td>
+<td>mul32</td>
+<td>mul</td>
+<td>w1 *= 0x42</td>
+</tr>
+<tr>
+<td>0x3c</td>
+<td>mul32</td>
+<td>mul</td>
+<td>w1 *= w2</td>
+</tr>
+<tr>
+<td>0x34</td>
+<td>div32</td>
+<td>div</td>
+<td>w1 /= 0x42</td>
+</tr>
+<tr>
+<td>0x3c</td>
+<td>div32</td>
+<td>div</td>
+<td>w1 /= w2</td>
+</tr>
+<tr>
+<td>0x44</td>
+<td>or32</td>
+<td>or</td>
+<td>w1 &#124;= 0x42</td>
+</tr>
+<tr>
+<td>0x4c</td>
+<td>or32</td>
+<td>or</td>
+<td>w1 &#124;= w2</td>
+</tr>
+<tr>
+<td>0x54</td>
+<td>and32</td>
+<td>and</td>
+<td>w1 &amp;= 0x42</td>
+</tr>
+<tr>
+<td>0x5c</td>
+<td>and32</td>
+<td>and</td>
+<td>w1 &amp;= w2</td>
+</tr>
+<tr>
+<td>0x64</td>
+<td>lsh32</td>
+<td>lsh</td>
+<td>w1 &lt;&lt;= 0x42</td>
+</tr>
+<tr>
+<td>0x6c</td>
+<td>lsh32</td>
+<td>lsh</td>
+<td>w1 &lt;&lt;= w2</td>
+</tr>
+<tr>
+<td>0x74</td>
+<td>rsh32</td>
+<td>rsh</td>
+<td>w1 &gt;&gt;= 0x42</td>
+</tr>
+<tr>
+<td>0x7c</td>
+<td>rsh32</td>
+<td>rsh</td>
+<td>w1 &gt;&gt;= w2</td>
+</tr>
+<tr>
+<td>0x84</td>
+<td>neg32</td>
+<td>neg</td>
+<td>w1 = -w1</td>
+</tr>
+<tr>
+<td>0x94</td>
+<td>mod32</td>
+<td>mod</td>
+<td>w1 %= 0x42</td>
+</tr>
+<tr>
+<td>0x9c</td>
+<td>mod32</td>
+<td>mod</td>
+<td>w1 %= w2</td>
+</tr>
+<tr>
+<td>0xa4</td>
+<td>xor32</td>
+<td>xor</td>
+<td>w1 ^= 0x42</td>
+</tr>
+<tr>
+<td>0xac</td>
+<td>xor32</td>
+<td>xor</td>
+<td>w1 ^= w2</td>
+</tr>
+<tr>
+<td>0xb4</td>
+<td>mov32</td>
+<td>mov</td>
+<td>w1 = 0x42</td>
+</tr>
+<tr>
+<td>0xbc</td>
+<td>mov32</td>
+<td>mov</td>
+<td>w1 = w2</td>
+</tr>
+<tr>
+<td>0xc4</td>
+<td>arsh32</td>
+<td>arsh</td>
+<td>w1 s&gt;&gt;= 0x42</td>
+</tr>
+<tr>
+<td>0xcc</td>
+<td>arsh32</td>
+<td>arsh</td>
+<td>w1 s&gt;&gt;= w2</td>
+</tr>
+<tr>
+<td>0xe4</td>
+<td>sdiv32</td>
+<td></td>
+</tr>
+<tr>
+<td>0xec</td>
+<td>sdiv32</td>
+<td></td>
+</tr>
+</tbody>
+</table><!--kg-card-end: markdown--><h4 id="endian-alu-extension">Endian ALU extension</h4><!--kg-card-begin: markdown--><table class="custom-table-code">
+<thead>
+<tr>
+<th>Opcode</th>
+<th>rbpf</th>
+<th>Capstone</th>
+<th>LLVM</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xd4</td>
+<td>le{n}</td>
+<td>le{n}</td>
+<td>r1 = le{n} r1</td>
+<td>Basically a mask</td>
+</tr>
+<tr>
+<td>0xdc</td>
+<td>be{n}</td>
+<td>be{n}</td>
+<td>r1 = be{n} r1</td>
+<td>Swaps endianness</td>
+</tr>
+</tbody>
+</table><!--kg-card-end: markdown--><p>The LE/BE instructions operate in 16-bit, 32-bit, or 64-bit mode, indicated by the values in the immediate field.<br>For example, <code>0xdc</code> with destination register <code>1</code> and immediate <code>32</code> is <code>be32 r1</code>.<br>They were used for portable endianness conversions. Since Solana is always little-endian, only the BE instruction swaps bytes.</p><ul><li><code>le16 rD</code> is equivalent to <code>rD &amp;= 0xFFFF</code>.</li><li><code>le32 rD</code> is equivalent to <code>rD &amp;= 0xFFFF_FFFF</code>.</li><li><code>le64 rD</code> is a <code>nop</code>.</li><li><code>be16 rD</code> swaps the lower 2 bytes and zeroes the upper 6.</li><li><code>be32 rD</code> reverses the order of the lower 4 bytes and zeros the upper 4.</li><li><code>be64 rD</code> reverses the order of all 8 bytes.</li></ul><h4 id="jump-class">Jump class</h4><p>The jump instructions combine comparisons and conditional jumps. Compared to x86 or PowerPC, this simplifies the ISA by removing the condition register and using less opcodes.</p><p>The conditional jump instructions (all except <code>ja</code>) compare a register either against another register or an immediate value.</p><!--kg-card-begin: markdown--><table class="custom-table-code">
+<thead>
+<tr>
+<th>Opcode</th>
+<th>rbpf</th>
+<th>Capstone</th>
+<th>LLVM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x05</td>
+<td>ja</td>
+<td>jmp</td>
+<td>goto +12</td>
+</tr>
+<tr>
+<td>0x15</td>
+<td>jeq</td>
+<td>jeq</td>
+<td>if r0 == r1 goto +12</td>
+</tr>
+<tr>
+<td>0x1d</td>
+<td>jeq</td>
+<td>jeq</td>
+<td>if r0 == 42 goto +12</td>
+</tr>
+<tr>
+<td>0x25</td>
+<td>jgt</td>
+<td>jgt</td>
+<td>if r0 &gt; r1 goto +12</td>
+</tr>
+<tr>
+<td>0x2d</td>
+<td>jgt</td>
+<td>jgt</td>
+<td>if r0 &gt; 42 goto +12</td>
+</tr>
+<tr>
+<td>0x35</td>
+<td>jge</td>
+<td>jge</td>
+<td>if r0 &gt;= r1 goto +12</td>
+</tr>
+<tr>
+<td>0x3d</td>
+<td>jge</td>
+<td>jge</td>
+<td>if r0 &gt;= 42 goto +12</td>
+</tr>
+<tr>
+<td>0x45</td>
+<td>jset</td>
+<td>jset</td>
+<td>if r0 &amp; r1 != 0 goto +12</td>
+</tr>
+<tr>
+<td>0x4d</td>
+<td>jset</td>
+<td>jset</td>
+<td>if r0 &amp; 42 != 0 goto +12</td>
+</tr>
+<tr>
+<td>0x55</td>
+<td>jne</td>
+<td>jne</td>
+<td>if r0 != r1 goto +12</td>
+</tr>
+<tr>
+<td>0x5d</td>
+<td>jne</td>
+<td>jne</td>
+<td>if r0 != 42 goto +12</td>
+</tr>
+<tr>
+<td>0x65</td>
+<td>jsgt</td>
+<td>jsgt</td>
+<td>if r0 s&gt; r1 goto +12</td>
+</tr>
+<tr>
+<td>0x6d</td>
+<td>jsgt</td>
+<td>jsgt</td>
+<td>if r0 s&gt; 42 goto +12</td>
+</tr>
+<tr>
+<td>0x75</td>
+<td>jsge</td>
+<td>jsge</td>
+<td>if r0 s&gt;= r1 goto +12</td>
+</tr>
+<tr>
+<td>0x7d</td>
+<td>jsge</td>
+<td>jsge</td>
+<td>if r0 s&gt;= 42 goto +12</td>
+</tr>
+<tr>
+<td>0xa5</td>
+<td>jlt</td>
+<td>jlt</td>
+<td>if r0 &lt; r1 goto +12</td>
+</tr>
+<tr>
+<td>0xad</td>
+<td>jlt</td>
+<td>jlt</td>
+<td>if r0 &lt; 42 goto +12</td>
+</tr>
+<tr>
+<td>0xb5</td>
+<td>jle</td>
+<td>jle</td>
+<td>if r0 &lt;= r1 goto +12</td>
+</tr>
+<tr>
+<td>0xbd</td>
+<td>jle</td>
+<td>jle</td>
+<td>if r0 &lt;= 42 goto +12</td>
+</tr>
+<tr>
+<td>0xc5</td>
+<td>jslt</td>
+<td>jslt</td>
+<td>if r0 s&lt; r1 goto +12</td>
+</tr>
+<tr>
+<td>0xcd</td>
+<td>jslt</td>
+<td>jslt</td>
+<td>if r0 s&lt; 42 goto +12</td>
+</tr>
+<tr>
+<td>0xd5</td>
+<td>jsle</td>
+<td>jsle</td>
+<td>if r0 s&lt;= r1 goto +12</td>
+</tr>
+<tr>
+<td>0xdd</td>
+<td>jsle</td>
+<td>jsle</td>
+<td>if r0 s&lt;= 42 goto +12</td>
+</tr>
+</tbody>
+</table><!--kg-card-end: markdown--><h4 id="call-class">Call class</h4><p>The call-related opcodes push/pop the call frame stack and stack pointer.<br>The call frame stack is a protected data structure that can only be accessed by the call class (comparable to x86 shadow stacks).</p><!--kg-card-begin: markdown--><table class="custom-table-code">
+<thead>
+<tr>
+<th>Opcode</th>
+<th>rbpf</th>
+<th>Capstone</th>
+<th>LLVM</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x85</td>
+<td>call</td>
+<td>call</td>
+<td>call 0x1234</td>
+</tr>
+<tr>
+<td>0x8D</td>
+<td>callx</td>
+<td>callx</td>
+<td>callx r3</td>
+<td>
+    Not part of kernel eBPF
+    <br>
+    Register idx in imm field
+</td>
+</tr>
+<tr>
+<td>0x95</td>
+<td>exit</td>
+<td>exit</td>
+<td>exit</td>
+</tr>
+</tbody>
+</table><!--kg-card-end: markdown--><ul><li><code>call</code> saves a call frame and enters a syscall or jumps to a target indicated by the immediate.</li><li><code>callx</code> saves a call frame and jumps to the absolute address in the given register. The register index is stored in the immediate field of the instruction.</li><li><code>exit</code> restores a call frame and jumps to its return address.</li></ul><p><strong>Resolving call targets</strong></p><p>The 32-bit immediate field of the <code>call</code> opcode contains the hash of target symbol name or syscall name. The VM resolves a call target hash using two immutable lookup maps for syscalls and jump targets, which are constructed on program load. Syscalls take precedence over jump targets. The VM aborts when a hash cannot be resolved.</p><p>The hash algorithm is Murmur3 in 32-bit mode on the UTF-8 encoding of the symbol name.</p><p>See next post for the syscalls available in Sealevel.</p><figure class="kg-card kg-bookmark-card"><a class="kg-bookmark-container" href="https://web.archive.org/web/20231004134038/https://bpf.wtf/sol-0x04-syscalls/"><div class="kg-bookmark-content"><div class="kg-bookmark-title">~bpf.sol | 0x04: Sealevel Syscalls</div><div class="kg-bookmark-description">This page lists the syscalls available in Solana’s Sealevel VM. The convention for invoking syscalls follows the SBFv2 ABI for function calls. …</div><div class="kg-bookmark-metadata"><img class="kg-bookmark-icon" src="https://web.archive.org/web/20231004134038im_/https://bpf.wtf/favicon.ico" alt><span class="kg-bookmark-author">bpf.wtf</span><span class="kg-bookmark-publisher">Richard Patel</span></div></div><div class="kg-bookmark-thumbnail"><img src="https://web.archive.org/web/20231004134038im_/https://bpf.wtf/content/images/2022/07/Bildschirmfoto-2022-07-09-um-03.20.22.png" alt></div></a></figure><hr><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://web.archive.org/web/20231004134038im_/https://media.tenor.com/images/483b5f75a85a51bfa589ad3acd2e7f6d/tenor.gif" class="kg-image" alt loading="lazy" width="498" height="277"><figcaption>Closing thoughts</figcaption></figure>
+        </div>
+
+            <footer class="gh-article-footer gh-canvas">
+                <nav class="gh-navigation">
+                    <div class="gh-navigation-previous">
+                            <a class="gh-navigation-link" href="/web/20231004134038/https://bpf.wtf/moar-glass/">
+                                <span class="gh-navigation-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"></line>
+    <polyline points="12 19 5 12 12 5"></polyline>
+</svg> Previous issue</span>
+                                <h4 class="gh-navigation-title">Need Moar Glass</h4>
+                            </a>
+                    </div>
+
+                    <div class="gh-navigation-middle"></div>
+
+                    <div class="gh-navigation-next">
+                            <a class="gh-navigation-link" href="/web/20231004134038/https://bpf.wtf/sol-0x04-syscalls/">
+                                <span class="gh-navigation-label">Next issue <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+</svg></span>
+                                <h4 class="gh-navigation-title">~bpf.sol | 0x04: Sealevel Syscalls</h4>
+                            </a>
+                    </div>
+                </nav>
+            </footer>
+    </article>
+</main>
+
+
+
+            <div class="gh-subscribe">
+                <div class="gh-outer">
+                    <section class="gh-subscribe-inner">
+                            <h3 class="gh-subscribe-title">Subscribe to bpf.wtf</h3>
+
+                            <div class="gh-subscribe-description">Don’t miss out on the latest issues. Sign up now to get access to the library of members-only issues.</div>
+
+                            <a class="gh-subscribe-input" href="#/portal/signup" data-portal="signup">
+                                <div class="gh-subscribe-input-text">
+                                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3.33332 3.33334H16.6667C17.5833 3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667 16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334 2.41666 3.33334 3.33332 3.33334Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.3333 5L9.99999 10.8333L1.66666 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>                                    jamie@example.com
+                                </div>
+                                <div class="gh-subscribe-input-btn">Subscribe</div>
+                            </a>
+                    </section>
+                </div>
+            </div>
+
+        <footer class="gh-foot gh-outer">
+            <div class="gh-foot-inner gh-inner">
+                <div class="gh-copyright">
+                    bpf.wtf © 2023
+                </div>
+
+                <nav class="gh-foot-menu">
+                    <ul class="nav">
+    <li class="nav-about"><a href="https://web.archive.org/web/20231004134038/https://bpf.wtf/about/">About</a></li>
+</ul>
+
+                </nav>
+
+                <div class="gh-powered-by">
+                    <a href="https://web.archive.org/web/20231004134038/https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://web.archive.org/web/20231004134038js_/https://bpf.wtf/assets/built/main.min.js?v=9f2531ced7"></script>
+
+    
+</body>
+
+</html><!--
+     FILE ARCHIVED ON 13:40:38 Oct 04, 2023 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 06:37:43 Mar 31, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.652
+  exclusion.robots: 0.05
+  exclusion.robots.policy: 0.04
+  esindex: 0.011
+  cdx.remote: 20.331
+  LoadShardBlock: 599.676 (3)
+  PetaboxLoader3.resolve: 171.479 (4)
+  PetaboxLoader3.datanode: 449.436 (4)
+  load_resource: 84.727
+-->

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="//archive.org/includes/athena.js" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app241.us.archive.org';v.server_ms=925;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=2N_sDSC0" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=txqj7nKC" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://bpf.wtf/sol-0x04-syscalls/","20231004144333","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1696430613");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>~bpf.sol | 0x04: Sealevel Syscalls</title>
+    <link rel="preconnect" href="https://web.archive.org/web/20231004144333/https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://web.archive.org/web/20231004144333/https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://web.archive.org/web/20231004144333cs_/https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap">
+    <link rel="stylesheet" href="https://web.archive.org/web/20231004144333cs_/https://bpf.wtf/assets/built/screen.css?v=9f2531ced7">
+
+    <meta name="description" content="This page lists the syscalls available in Solana's Sealevel VM. 
+The convention for invoking syscalls follows the SBFv2 ABI for function calls. …">
+    <link rel="canonical" href="https://web.archive.org/web/20231004144333/https://bpf.wtf/sol-0x04-syscalls/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="bpf.wtf">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="~bpf.sol | 0x04: Sealevel Syscalls">
+    <meta property="og:description" content="This page lists the syscalls available in the Sealevel VM.">
+    <meta property="og:url" content="https://web.archive.org/web/20231004144333/https://bpf.wtf/sol-0x04-syscalls/">
+    <meta property="article:published_time" content="2022-07-09T01:12:32.000Z">
+    <meta property="article:modified_time" content="2023-03-17T20:54:12.000Z">
+    <meta property="article:tag" content="Solana BPF Series">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="~bpf.sol | 0x04: Sealevel Syscalls">
+    <meta name="twitter:description" content="This page lists the syscalls available in the Sealevel VM.">
+    <meta name="twitter:url" content="https://web.archive.org/web/20231004144333im_/https://bpf.wtf/sol-0x04-syscalls/">
+    <meta name="twitter:image" content="https://web.archive.org/web/20231004144333im_/https://bpf.wtf/content/images/2022/07/Bildschirmfoto-2022-07-09-um-03.20.22.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Richard Patel">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Solana BPF Series">
+    <meta name="twitter:creator" content="@terorie_dev">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://web.archive.org/web/20231004144333/https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "bpf.wtf",
+        "url": "https://web.archive.org/web/20231004144333/https://bpf.wtf/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20231004144333/https://bpf.wtf/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Richard Patel",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20231004144333/https://bpf.wtf/content/images/2022/04/Fd_YbBrD_400x400.jpeg",
+            "width": 342,
+            "height": 342
+        },
+        "url": "https://web.archive.org/web/20231004144333/https://bpf.wtf/author/terorie/",
+        "sameAs": [
+            "https://web.archive.org/web/20231004144333/https://github.com/terorie",
+            "https://web.archive.org/web/20231004144333/https://twitter.com/terorie_dev"
+        ]
+    },
+    "headline": "~bpf.sol | 0x04: Sealevel Syscalls",
+    "url": "https://web.archive.org/web/20231004144333/https://bpf.wtf/sol-0x04-syscalls/",
+    "datePublished": "2022-07-09T01:12:32.000Z",
+    "dateModified": "2023-03-17T20:54:12.000Z",
+    "keywords": "Solana BPF Series",
+    "description": "This page lists the syscalls available in the Sealevel VM.",
+    "mainEntityOfPage": "https://web.archive.org/web/20231004144333/https://bpf.wtf/sol-0x04-syscalls/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.66">
+    <link rel="alternate" type="application/rss+xml" title="bpf.wtf" href="https://web.archive.org/web/20231004144333/https://bpf.wtf/rss/">
+    
+    <script defer src="https://web.archive.org/web/20231004144333js_/https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="01f7155cf059f664c37b3d4cfe" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://bpf-wtf.ghost.io/" crossorigin="anonymous"></script>
+    
+    <link href="https://bpf.wtf/webmentions/receive/" rel="webmention">
+    <script defer src="/web/20231004144333js_/https://bpf.wtf/public/cards.min.js?v=9f2531ced7"></script>
+    <link rel="stylesheet" type="text/css" href="/web/20231004144333cs_/https://bpf.wtf/public/cards.min.css?v=9f2531ced7">
+    <script src="https://web.archive.org/web/20231004144333js_/https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js" integrity="" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://web.archive.org/web/20231004144333js_/https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js" integrity="" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+.members-subscribe, .members-login {
+  display: none;    
+}
+.kg-bookmark-thumbnail {
+  display: none;
+}
+.gh-subscribe, .gh-head-actions, .gh-head-btn, .gh-signup {
+  display: none;
+}
+table.custom-table-code {
+  min-width: 650px;
+}
+.custom-table-code thead {
+  text-align: left;
+}
+.custom-table-code tbody {
+  font-family: var(--font-mono);
+}
+.custom-table-code tbody a {
+  text-decoration: none;
+}
+
+    
+.token.atrule,
+.token.attr-value,
+.token.class-name,
+.token.keyword {
+    color: #1990b8
+}
+.token.block-comment,
+.token.cdata,
+.token.comment,
+.token.doctype,
+.token.prolog {
+    color: #7d8b99
+}
+.token.punctuation {
+    color: #5f6364
+}
+.token.boolean,
+.token.constant,
+.token.deleted,
+.token.function-name,
+.token.number,
+.token.property,
+.token.property > *,
+.token.symbol,
+.token.tag {
+    color: #c92c2c
+}
+.token.attr-name,
+.token.builtin,
+.token.char,
+.token.function,
+.token.inserted,
+.token.selector,
+.token.string {
+    color: #2f9c0a
+}
+.token.entity,
+.token.operator,
+.token.url,
+.token.variable {
+    color: #a67f59;
+    background: rgba(255, 255, 255, .5)
+}
+.token.important,
+.token.regex {
+    color: #e90
+}
+.language-css .token.string,
+.style .token.string {
+    color: #a67f59;
+    background: rgba(255, 255, 255, .5)
+}
+.token.important {
+    font-weight: 400
+}
+
+.token.bold {
+    font-weight: 700
+}
+
+.token.italic {
+    font-style: italic
+}
+.token.entity {
+    cursor: help
+}
+.token.namespace {
+    opacity: .7
+}
+</style><style>:root {--ghost-accent-color: #9a45ff;}</style>
+</head>
+
+<body class="post-template tag-sol is-head-b--a_n has-serif-title"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;" toolbar-mode="auto">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;height:0;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20231004144333/https%3A//bpf.wtf/sol-0x04-syscalls/"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;" nav="async">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="https://bpf.wtf/sol-0x04-syscalls/" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20231004144333" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;">
+                    <a class="t" href="/web/20231004144333*/https://bpf.wtf/sol-0x04-syscalls/" title="See a list of every capture for this URL">7 captures</a>
+          <div class="r" title="Timespan for captures of this URL">16 Jul 2022 - 14 Apr 2024</div>
+          </div>
+        <div class="k">
+          <a href="" id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="775" height="27" border="0"></canvas>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+          <tr class="m">
+            <td class="b" nowrap="nowrap">Sep</td>
+            <td class="c" id="displayMonthEl" title="You are here: 14:43:33 Oct 04, 2023">OCT</td>
+            <td class="f" nowrap="nowrap">Nov</td>
+          </tr>
+          <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+          <tr class="d">
+            <td class="b" nowrap="nowrap"><span class="ta"></span></td>
+            <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 14:43:33 Oct 04, 2023">04</td>
+            <td class="f" nowrap="nowrap"><span class="ta"></span></td>
+          </tr>
+          <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+          <tr class="y">
+            <td class="b" nowrap="nowrap">2022</td>
+            <td class="c" id="displayYearEl" title="You are here: 14:43:33 Oct 04, 2023">2023</td>
+            <td class="f" nowrap="nowrap">2024</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        </span>
+                <a class="xxs" href="https://help.archive.org/help/category/the-wayback-machine/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+        <a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20231004144333/http://web.archive.org/screenshot/https://bpf.wtf/sol-0x04-syscalls/"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+        <a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20231004144333/https://bpf.wtf/sol-0x04-syscalls/" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+        <a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20231004144333/https://bpf.wtf/sol-0x04-syscalls/" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+        <a id="wm-expand" class="wm-btn wm-closed" href="#expand"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-notice" source="api"></div>
+                <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center;padding:2px 0;">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/commoncrawl)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/commoncrawl" target="_new"><span class="wm-title">Common Crawl</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Web crawl data from Common Crawl.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center;padding:2px 0;" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="https://web-static.archive.org/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20231004144333/https://bpf.wtf/sol-0x04-syscalls/</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(775,27,25,2,"web","https://bpf.wtf/sol-0x04-syscalls/","20231004144333",1996,"https://web-static.archive.org/_static/",["https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3","https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+ 
+    <div class="gh-site">
+        <header id="gh-head" class="gh-head gh-outer">
+            <div class="gh-head-inner gh-inner">
+                <div class="gh-head-brand">
+                    <a class="gh-head-logo" href="https://web.archive.org/web/20231004144333/https://bpf.wtf/">
+                            bpf.wtf
+                    </a>
+                    <button class="gh-burger"></button>
+                </div>
+
+                <nav class="gh-head-menu">
+                    <ul class="nav">
+    <li class="nav-home"><a href="https://web.archive.org/web/20231004144333/https://bpf.wtf/">Home</a></li>
+    <li class="nav-bpf-sol"><a href="https://web.archive.org/web/20231004144333/https://bpf.wtf/tag/sol/">bpf.sol</a></li>
+</ul>
+
+                </nav>
+
+                <div class="gh-head-actions">
+                        <a class="gh-head-btn" href="#/portal/signup" data-portal="signup">
+                            <svg width="20" height="20" viewbox="0 0 20 20" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3.33332 3.33334H16.6667C17.5833 3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667 16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334 2.41666 3.33334 3.33332 3.33334Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.3333 5L9.99999 10.8333L1.66666 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>                            Subscribe
+                        </a>
+                </div>
+            </div>
+        </header>
+
+        
+
+<main id="gh-main" class="gh-main">
+    <article class="gh-article post tag-sol no-image">
+        <header class="gh-article-header gh-canvas">
+                <span class="gh-article-meta">
+                    By <a href="/web/20231004144333/https://bpf.wtf/author/terorie/">Richard Patel</a>
+                        in
+                        <a class="gh-article-tag" href="https://web.archive.org/web/20231004144333/https://bpf.wtf/tag/sol/">Solana BPF Series</a>
+                    —
+                    <time datetime="2022-07-09">Jul 9, 2022</time>
+                </span>
+
+            <h1 class="gh-article-title">~bpf.sol | 0x04: Sealevel Syscalls</h1>
+
+                <p class="gh-article-excerpt">This page lists the syscalls available in the Sealevel VM.</p>
+
+        </header>
+
+        <div class="gh-content gh-canvas">
+            <p>Syscalls allow programs running in the Solana virtual machine to interact with outside resources. They can be invoked using the <a href="https://web.archive.org/web/20231004144333/https://bpf.wtf/sol-0x03-isa/#call-class"><code>call</code> instruction</a> with the immediate value set to the symbol hash.</p><h2 id="syscall-table">Syscall Table</h2><!--kg-card-begin: markdown--><table class="custom-table-code">
+    <thead>
+    <tr>
+        <th>Hash</th>
+        <th>Symbol</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>b6fc1a11</td>
+        <td><a href="#abort">abort</a></td>
+    </tr>
+    <tr>
+        <td>686093bb</td>
+        <td><a href="#solpanic">sol_panic_</a></td>
+    </tr>
+    <tr>
+        <td>207559bd</td>
+        <td><a href="#sollog">sol_log_</a></td>
+    </tr>
+    <tr>
+        <td>5c2a3178</td>
+        <td><a href="#sollog64">sol_log_64_</a></td>
+    </tr>
+    <tr>
+        <td>52ba5096</td>
+        <td><a href="#sollogcomputeunits">sol_log_compute_units_</a></td>
+    </tr>
+    <tr>
+        <td>7ef088ca</td>
+        <td><a href="#sollogpubkey">sol_log_pubkey</a></td>
+    </tr>
+    <tr>
+        <td>9377323c</td>
+        <td><a href="#solcreateprogramaddress">sol_create_program_address</a></td>
+    </tr>
+    <tr>
+        <td>48504a38</td>
+        <td><a href="#soltryfindprogramaddress">sol_try_find_program_address</a></td>
+    </tr>
+    <tr>
+        <td>11f49d86</td>
+        <td><a href="#solsha256">sol_sha256</a></td>
+    </tr>
+    <tr>
+        <td>d7793abb</td>
+        <td><a href="#solkeccak256">sol_keccak256</a></td>
+    </tr>
+    <tr>
+        <td>17e40350</td>
+        <td><a href="#solsecp256k1recover">sol_secp256k1_recover</a></td>
+    </tr>
+    <tr>
+        <td>174c5122</td>
+        <td><a href="#solblake3">sol_blake3</a></td>
+    </tr>
+    <tr>
+        <td>aa2607ca</td>
+        <td><a href="#solcurvevalidatepoint">sol_curve_validate_point</a></td>
+    </tr>
+    <tr>
+        <td>dd1c41a6</td>
+        <td><a href="#solcurvegroupop">sol_curve_group_op</a></td>
+    </tr>
+    <tr>
+        <td>d56b5fe9</td>
+        <td><a href="#solgetclocksysvar">sol_get_clock_sysvar</a></td>
+    </tr>
+    <tr>
+        <td>23a29a61</td>
+        <td><a href="#solgetepochschedulesysvar">sol_get_epoch_schedule_sysvar</a></td>
+    </tr>
+    <tr>
+        <td>3b97b73c</td>
+        <td><a href="#solgetfeessysvar">sol_get_fees_sysvar</a></td>
+    </tr>
+    <tr>
+        <td>bf7188f6</td>
+        <td><a href="#solgetrentsysvar">sol_get_rent_sysvar</a></td>
+    </tr>
+    <tr>
+        <td>717cc4a3</td>
+        <td><a href="#solmemcpy">sol_memcpy_</a></td>
+    </tr>
+    <tr>
+        <td>434371f8</td>
+        <td><a href="#solmemmove">sol_memmove_</a></td>
+    </tr>
+    <tr>
+        <td>5fdcde31</td>
+        <td><a href="#solmemcmp">sol_memcmp_</a></td>
+    </tr>
+    <tr>
+        <td>3770fb22</td>
+        <td><a href="#solmemset">sol_memset_</a></td>
+    </tr>
+    <tr>
+        <td>a22b9c85</td>
+        <td><a href="#solinvokesignedc">sol_invoke_signed_c</a></td>
+    </tr>
+    <tr>
+        <td>d7449092</td>
+        <td><a href="#solinvokesignedrust">sol_invoke_signed_rust</a></td>
+    </tr>
+    <tr>
+        <td>83f00e8f</td>
+        <td><a href="#solallocfree">sol_alloc_free_</a></td>
+    </tr>
+    <tr>
+        <td>a226d3eb</td>
+        <td><a href="#solsetreturndata">sol_set_return_data</a></td>
+    </tr>
+    <tr>
+        <td>5d2245e4</td>
+        <td><a href="#solgetreturndata">sol_get_return_data</a></td>
+    </tr>
+    <tr>
+        <td>7317b434</td>
+        <td><a href="#sollogdata">sol_log_data</a></td>
+    </tr>
+    <tr>
+        <td>adb8efc8</td>
+        <td><a href="#solgetprocessedsiblinginstruction">sol_get_processed_sibling_instruction</a></td>
+    </tr>
+    <tr>
+        <td>85532d94</td>
+        <td><a href="#solgetstackheight">sol_get_stack_height</a></td>
+    </tr>
+    </tbody>
+</table><!--kg-card-end: markdown--><h2 id="calling-convention">Calling Convention</h2><p>The convention for invoking syscalls follows the SBFv2 ABI for function calls.</p><p>Input params are provided in registers <code>r1</code>, <code>r2</code>, <code>r3</code>, <code>r4</code>, <code>r5</code>.<br>Register <code>r0</code> is always set, either to the return value, or zero for void syscalls.<br>Other registers are preserved. Syscalls do not allocate a call frame.</p><p>If the caller provides invalid inputs that cause a runtime error (e.g. calling <code>sol_memcpy_</code> on null pointer), the VM raises the error at the call site.</p><h2 id="syscall-reference">Syscall Reference</h2><h3 id="abort">abort</h3><p>See <code><a href="https://web.archive.org/web/20231004144333/https://man7.org/linux/man-pages/man3/abort.3.html?ref=bpf.wtf">abort(3)</a></code>. Aborts the VM with <code>SyscallError::Abort</code> and never returns.</p><pre><code class="language-C">#include &lt;stdlib.h&gt;
+noreturn void abort();</code></pre><h3 id="solpanic">sol_panic_</h3><p>Aborts the VM with <code>SyscallError::Panic</code> and never returns.</p><pre><code class="language-C">#include &lt;sol/assert.h&gt;
+noreturn void sol_panic_(/* r1 */ const char *file_str,
+                         /* r2 */ uint64_t file_str_len,
+                         /* r3 */ uint64_t line,
+                         /* r4 */ uint64_t column);</code></pre><h3 id="sollog">sol_log_</h3><p>Writes a log entry to the Sealevel logging facility.</p><pre><code class="language-C">#include &lt;sol/log.h&gt;
+void sol_log_(/* r1 */ const char *message,
+              /* r2 */ uint64_t len);</code></pre><h3 id="sollog64">sol_log_64_</h3><p>Writes a log entry containing five 64-bit integers to the Sealevel logging facility. The log message uses format <code>Program log: %x %x %x %x %x</code>.</p><pre><code class="language-C">#include &lt;sol/log.h&gt;
+void sol_log_64_(uint64_t r1,
+                 uint64_t r2,
+                 uint64_t r3,
+                 uint64_t r4,
+                 uint64_t r5);</code></pre><h3 id="sollogcomputeunits">sol_log_compute_units_</h3><p>Writes the current compute unit consumption to the Sealevel logging facility.<br>The log message uses format <code>Program consumption: %d units remaining</code></p><pre><code class="language-C">#include &lt;sol/log.h&gt;
+void sol_log_compute_units_();</code></pre><h3 id="sollogpubkey">sol_log_pubkey</h3><p>Writes a log entry with a Base58-encoded Solana public key.<br>The log message uses format <code>Program log: %s</code></p><pre><code class="language-C">#include &lt;sol/pubkey.h&gt;
+void sol_log_pubkey(/* r1 */ const SubPubkey *);</code></pre><h3 id="solcreateprogramaddress">sol_create_program_address</h3><p>Calculates a <a href="https://web.archive.org/web/20231004144333/https://docs.solana.com/developing/programming-model/calling-between-programs?ref=bpf.wtf#program-derived-addresses">program-derived address</a> (PDA) from the given program ID and seed list.</p><p>If the resulting address is a valid PDA (i.e. does not lie on Curve25519), returns <code>0</code> and writes the address to the pointer in r4. Otherwise returns <code>1</code> without writing to memory.</p><p>The caller is expected to provide a seeds input such that the PDA derivation succeeds. This makes <code>sol_create_program_address</code> mostly useful for verifying PDA derivations. If you want to find new PDAs, consider using <code><a href="#soltryfindprogramaddress">sol_try_find_program_address</a></code> instead.</p><p>See <code><a href="https://web.archive.org/web/20231004144333/https://docs.rs/solana-program/latest/solana_program/pubkey/struct.Pubkey.html?ref=bpf.wtf#method.create_program_address">solana_program::pubkey::Pubkey::create_program_address</a></code>.</p><pre><code class="language-C">#include &lt;sol/pubkey.h&gt;
+typedef struct {
+  const uint8_t *addr;
+  uint64_t len;
+} SolSignerSeed;
+uint64_t sol_create_program_address(
+        /* r1 */ const SolSignerSeed *seeds,
+        /* r2 */ int seeds_len,
+        /* r3 */ const SolPubkey *program_id,
+        /* r4 */ SolPubkey *program_address);</code></pre><h3 id="soltryfindprogramaddress">sol_try_find_program_address</h3><p>Calculates a <a href="https://web.archive.org/web/20231004144333/https://docs.solana.com/developing/programming-model/calling-between-programs?ref=bpf.wtf#program-derived-addresses">program-derived address</a> (PDA) and bump seed from the given program ID and seed list. Since not all inputs to <code>sol_create_program_address</code> result in successful derivations, the bump seed is used a one-byte-sized nonce that is appended to the seed list to search the input space for the next valid derivation. The search starts with bump seed <code>0</code> and ends at <code>255</code>, choosing the first value that results in a valid PDA. Each iteration writes the derived address to the pointer in r4 and the bump seed byte to the pointer in r5. </p><p>Returns <code>0</code> on success. In the unlikely case that the search fails, <code>1</code> is returned. In the highly unlikely failure case, bump seed <code>255</code> along with an (invalid) PDA gets written out to memory.</p><p>See <code><a href="https://web.archive.org/web/20231004144333/https://docs.rs/solana-program/latest/solana_program/pubkey/struct.Pubkey.html?ref=bpf.wtf#method.try_find_program_address">solana_program::pubkey::Pubkey::try_find_program_address</a></code>.</p><pre><code class="language-C">#include &lt;sol/pubkey.h&gt;
+typedef struct {
+  const uint8_t *addr;
+  uint64_t len;
+} SolSignerSeed;
+uint64_t sol_try_find_programs_address(
+        /* r1 */ const SolSignerSeed *seeds,
+        /* r2 */ int seeds_len,
+        /* r3 */ const SolPubkey *program_id,
+        /* r4 */ SolPubkey *program_address,
+        /* r5 */ uint8_t *bump_seed);</code></pre><h4 id="solsha256">sol_sha256</h4><p>Calculates the <a href="https://web.archive.org/web/20231004144333/https://en.wikipedia.org/wiki/SHA-2?ref=bpf.wtf">SHA-256</a> hash for the given byte inputs. The byte slices pointed to by r1 each get hashed as if they were a contiguous array. r2 specifies the number of byte slices. It is permitted to hash overlapping byte slices.</p><p>The default allowed max allowed slices count per operation is 20000. The compute unit costs are made up from two components:</p><ul><li><code>sha256_base_cost</code> (default <code>10</code>) once per syscall invocation.</li><li>Per slice, <code>sha256_byte_cost</code> times the number of two-byte pairs per slice or minimally <code>mem_op_base_cost</code> for very short slices.</li></ul><pre><code class="language-C">#include &lt;sol/sha.h&gt;
+typedef struct {
+  const uint8_t *addr;
+  uint64_t len;
+} SolBytes;
+void sol_sha256(/* r1 */ const SolBytes *bytes,
+                /* r2 */ int bytes_len,
+                /* r3 */ uint8_t *result);</code></pre><h3 id="solkeccak256">sol_keccak256</h3><p>Calculates the Keccak-256 hash for the given byte inputs. Keccak-256 is similar to NIST SHA3-256 but preserves the original padding from the <a href="https://web.archive.org/web/20231004144333/https://keccak.team/files/Keccak-submission-3.pdf?ref=bpf.wtf">NIST competition submission</a>, not the <a href="https://web.archive.org/web/20231004144333/https://csrc.nist.gov/publications/detail/fips/202/final?ref=bpf.wtf">FIPS 202</a> variant. This version is compatible with the <a href="https://web.archive.org/web/20231004144333/https://ethereum.stackexchange.com/a/554?ref=bpf.wtf">Ethereum protocols</a>.</p><p>The function signature and compute unit costs are identical to <code><a href="#solsha256">sol_sha256</a></code>.</p><pre><code class="language-C">#include &lt;sol/keccak.h&gt;
+typedef struct {
+  const uint8_t *addr;
+  uint64_t len;
+} SolBytes;
+void sol_keccak256(/* r1 */ const SolBytes *bytes,
+                   /* r2 */ int bytes_len,
+                   /* r3 */ uint8_t *result);</code></pre><h3 id="solsecp256k1recover">sol_secp256k1_recover</h3><p>Recovers a <a href="https://web.archive.org/web/20231004144333/https://en.bitcoin.it/wiki/Secp256k1?ref=bpf.wtf">secp256k1</a> public key from a signed message. Writes the uncompressed public key (64 bytes) to the pointer in r4. Compatible with Bitcoin and Ethereum.</p><p>Return codes:</p><ul><li><code>0x00</code>: <em>Success</em></li><li><code>0x01</code>: <em>Invalid hash provided</em></li><li><code>0x02</code>: <em>Invalid signature provided</em></li></ul><pre><code class="language-C">#include &lt;sol/secp256k1.h&gt;
+uint64_t sol_secp256k1_recover(/* r1 */ const uint8_t *hash,
+                               /* r2 */ uint64_t recovery_id,
+                               /* r3 */ const uint8_t *signature,
+                               /* r4 */ uint8_t *result);</code></pre><h3 id="solblake3">sol_blake3</h3><p>Calculates the <a href="https://web.archive.org/web/20231004144333/https://github.com/BLAKE3-team/BLAKE3?ref=bpf.wtf">BLAKE3</a> hash for the given byte inputs. </p><p>The function signature and compute unit costs are identical to <code><a href="#solsha256">sol_sha256</a></code>.</p><pre><code class="language-C">#include &lt;sol/blake3.h&gt;
+typedef struct {
+  const uint8_t *addr;
+  uint64_t len;
+} SolBytes;
+void sol_blake3(/* r1 */ const SolBytes *bytes,
+                /* r2 */ int bytes_len,
+                /* r3 */ uint8_t *result);</code></pre><h3 id="solcurvevalidatepoint">sol_curve_validate_point</h3><p>Validates an elliptic curve point. Returns <code>0</code> if the point is valid, otherwise <code>1</code>.</p><p>Supported elliptic curves (specified in r1):</p><ul><li><code>0x00</code>: <em>CURVE25519_EDWARDS</em></li><li><code>0x01</code>: <em>CURVE25519_RISTRETTO</em></li></ul><pre><code class="language-C">uint64_t sol_curve_validate_point(
+        /* r1 */ int curve_id,
+        /* r2 */ const void *point);</code></pre><h3 id="solcurvegroupop">sol_curve_group_op</h3><p>Provides elliptic curve group operations. Returns <code>0</code> on success, otherwise <code>1</code>.</p><p>See <code><a href="#solcurvevalidatepoint">sol_curve_validate_point</a></code> for supported curves.</p><p>Supported group operations (specified in r2):</p><ul><li><code>0x00</code>: Addition</li><li><code>0x01</code>: Subtraction</li><li><code>0x02</code>: Multiplication</li></ul><p>r3 and r4 point to the left and right input curve points. If the operation was successful, the resulting point gets written to the pointer in r5.</p><pre><code class="language-C">uint64_t sol_curve_group_op(
+        /* r1 */ int curve_id,
+        /* r2 */ int group_op,
+        /* r3 */ const void *left_point,
+        /* r4 */ const void *right_point,
+        /* r5 */ void *result_point);</code></pre><h3 id="solgetclocksysvar">sol_get_clock_sysvar</h3><p>Writes the <a href="https://web.archive.org/web/20231004144333/https://docs.solana.com/developing/runtime-facilities/sysvars?ref=bpf.wtf#clock">clock sysvar</a> to the pointer in r1.</p><pre><code class="language-C">typedef struct {
+  uint64_t slot;
+  int64_t epoch_start_timestamp;
+  uint64_t epoch;
+  uint64_t leader_schedule_epoch;
+  int64_t unix_timestamp;
+} SysvarClock;
+void sol_get_clock_sysvar(/* r1 */ SysvarClock *);</code></pre><h3 id="solgetepochschedulesysvar">sol_get_epoch_schedule_sysvar</h3><p>Writes the <a href="https://web.archive.org/web/20231004144333/https://docs.solana.com/developing/runtime-facilities/sysvars?ref=bpf.wtf#epochschedule">epoch schedule sysvar</a> to the pointer in r1.</p><pre><code class="language-C">typedef struct {
+  uint64_t slots_per_epoch;
+  uint64_t leader_schedule_slot_offset;
+  bool warmup; /* one byte */
+  uint64_t first_normal_epoch;
+  uint64_t first_normal_slot;
+} SysvarEpochSchedule;
+void sol_get_epoch_schedule_sysvar(/* r1 */ SysvarEpochSchedule *);</code></pre><h3 id="solgetfeessysvar">sol_get_fees_sysvar</h3><p>Writes the <a href="https://web.archive.org/web/20231004144333/https://docs.solana.com/developing/runtime-facilities/sysvars?ref=bpf.wtf#fees">fees sysvar</a> to the pointer in r1.</p><pre><code class="language-C">typedef struct {
+  uint64_t lamports_per_signature;
+} SysvarFees;
+void sol_get_fees_sysvar(/* r1 */ SysvarFees *);</code></pre><h3 id="solgetrentsysvar">sol_get_rent_sysvar</h3><p>Writes the <a href="https://web.archive.org/web/20231004144333/https://docs.solana.com/developing/runtime-facilities/sysvars?ref=bpf.wtf#rent">rent sysvar</a> to the pointer in r1.</p><pre><code class="language-C">typedef struct {
+  uint64_t lamports_per_byte_year;
+  double exemption_threshold;
+  uint8_t burn_percent;
+} SysvarRent;
+void sol_get_rent_sysvar(/* r1 */ SysvarRent *);</code></pre><h3 id="solmemcpy">sol_memcpy_</h3><p>See <code><a href="https://web.archive.org/web/20231004144333/https://man7.org/linux/man-pages/man3/memcpy.3.html?ref=bpf.wtf">memcpy(3)</a></code>.</p><p>Throws the <code>SyscallError::CopyOverlapping</code> runtime error if dest and src overlap.</p><pre><code class="language-C">void sol_memcpy_(/* r1 */ void *restrict dest,
+                 /* r2 */ const void *restrict src,
+                 /* r3 */ size_t n);</code></pre><h3 id="solmemmove">sol_memmove_</h3><p>See <code><a href="https://web.archive.org/web/20231004144333/https://man7.org/linux/man-pages/man3/memmove.3.html?ref=bpf.wtf">memmove(3)</a></code>.</p><pre><code class="language-C">void sol_memmove_(/* r1 */ void *dest,
+                  /* r2 */ const void *src,
+                  /* r3 */ size_t n);</code></pre><h3 id="solmemcmp">sol_memcmp_</h3><p>See <code><a href="https://web.archive.org/web/20231004144333/https://man7.org/linux/man-pages/man3/memcmp.3.html?ref=bpf.wtf">memcmp(3)</a></code>.</p><pre><code class="language-C">int sol_memcmp_(/* r1 */ const void *s1,
+                /* r2 */ const void *s2,
+                /* r3 */ size_t n);</code></pre><h3 id="solmemset">sol_memset_</h3><p>See <code><a href="https://web.archive.org/web/20231004144333/https://man7.org/linux/man-pages/man3/memset.3.html?ref=bpf.wtf">memset(3)</a></code>.</p><pre><code class="language-C">void *sol_memset_(/* r1 */ void *s,
+                  /* r2 */ int c,
+                  /* r3 */ size_t n);</code></pre><h3 id="solinvokesignedc">sol_invoke_signed_c</h3><p>Executes a cross-program invocation (CPI) given a Sealevel instruction, account infos and a list of seed list to derive signers. Each seed list determines one PDA to set as a signer.</p><p>Input <code>r1</code> points to the instruction that will execute the CPI.<br>Input <code>r2</code> points to the account infos array, <code>r3</code> specifies its length.<br>Input <code>r4</code> points to the array of seed lists, <code>r5</code> specifies its length.</p><p>Returns with <code>r0</code> set to zero.</p><pre><code class="language-C">#include &lt;sol/cpi.h&gt;
+
+typedef struct {
+  SolPubkey *pubkey;
+  bool is_writable;
+  bool is_signer;
+} SolAccountMeta;
+
+typedef struct {
+  SolPubkey *program_id;
+  SolAccountMeta *accounts;
+  uint64_t account_len;
+  uint8_t *data;
+  uint64_t data_len;
+} SolInstruction;
+
+typedef struct {
+  SolPubkey *key;
+  uint64_t *lamports;
+  uint64_t data_len;
+  uint8_t *data;
+  SolPubkey *owner;
+  uint64_t rent_epoch;
+  bool is_signer;
+  bool is_writable;
+  bool executable;
+} SolAccountInfo;
+
+typedef struct {
+  const uint8_t *seed;
+  uint64_t seed_len;
+} SolSignerSeed;
+
+typedef struct {
+  const SolSignerSeed *seeds;
+  uint64_t num_seeds;
+} SolSignerSeeds;
+
+void sol_invoke_signed_c(
+        /* r1 */ const SolInstruction *instruction,
+        /* r2 */ const SolAccountInfo *account_infos,
+        /* r3 */ int num_account_infos,
+        /* r4 */ const SolSignerSeeds *signers_seeds,
+        /* r5 */ int num_signers_seeds);</code></pre><h3 id="solinvokesignedrust">sol_invoke_signed_rust</h3><p>Identical effects to <code><a href="#solinvokesignedc">sol_invoke_signed_c</a></code> but using the Rust ABI for input parameters. This is the most complex syscall and scheduled to be removed soon. Please refer to the PR below for the reference of this syscall.</p><div class="kg-card kg-callout-card kg-callout-card-grey"><div class="kg-callout-emoji">🤝</div><div class="kg-callout-text">Thanks to <a href="https://web.archive.org/web/20231004144333/https://robertchen.cc/?ref=bpf.wtf">Robert Chen</a> at OtterSec for helping me out with CPI entrypoints. They are by far the most complex syscalls.<br>We also fixed some portability/soundness issues with the host implementation of this syscall: <em><a href="https://web.archive.org/web/20231004144333/https://github.com/solana-labs/solana/pull/26531?ref=bpf.wtf">solana-labs/solana#26531</a></em></div></div><h3 id="solallocfree">sol_alloc_free_</h3><p>Provides memory allocation primitives backed by a bump allocator.</p><p>If <code>r2</code> is a null pointer, allocates a chunk of memory of at least the size in <code>r1</code>. Returns a valid pointer on success or a null pointer on failure. </p><p>If <code>r2</code> is a valid pointer, does nothing.</p><pre><code class="language-C">void *sol_alloc_free_(/* r1 */ uint64_t size,
+                      /* r2 */ void *free_addr);</code></pre><h3 id="solsetreturndata">sol_set_return_data</h3><p>Sets the return data of the current instruction. This data can be retrieved with <code><a href="#solgetreturndata">sol_get_return_data</a></code> in the parent instruction's context.</p><p>Copies the return data from the pointer in <code>r1</code> with data len given in <code>r2</code> into the return data buffer.</p><pre><code class="language-C">#include &lt;sol/return_data.h&gt;
+void sol_set_return_data(/* r1 */ const void *addr,
+                         /* r2 */ uint64_t len);</code></pre><h3 id="solgetreturndata">sol_get_return_data</h3><p>Retrieves the return data of the CPI that has last returned back to the current context.</p><p>Copies return data into memory at <code>r1</code> with max data len given in <code>r2</code>. Writes the program ID that set the return data into <code>r3</code>. Returns the number of bytes read, or <code>0</code> if no return data was set.</p><pre><code class="language-C">#include &lt;sol/return_data.h&gt;
+uint64_t sol_get_return_data(/* r1 */ void *return_addr,
+                             /* r2 */ uint64_t max_len,
+                             /* r3 */ SolPubkey *program_id);</code></pre><h3 id="sollogdata">sol_log_data</h3><p>Writes a log entry containing Base64-encoded to the Sealevel logging facility. The log message uses format <code>Program log: %s</code>. The byte slices pointed to by r1 each get encoded as if they were a contiguous array.</p><p>The compute unit costs are made up from three components:</p><ul><li><code>syscall_base_cost</code> (default <code>100</code>) once per syscall invocation.</li><li><code>syscall_base_cost</code> (default <code>100</code>) times the number of slices.</li><li>One cost unit per byte read in total.</li></ul><pre><code class="language-C">#include &lt;sol/log.h&gt;
+void sol_log_data(/* r1 */ SolBytes *slices,
+                  /* r2 */ uint64_t num_slices);</code></pre><h3 id="solgetprocessedsiblinginstruction">sol_get_processed_sibling_instruction</h3><p>Copies data of a processed sibling Sealevel instruction to memory. For transaction-level instructions, the list of sibling instructions are the programs that have been invoked previously in the same transaction. Otherwise, it is the list of CPIs that the parent instruction has executed.</p><ul><li><code>r1</code> specifies the instruction index in the list.</li><li><code>r2</code> points to a descriptor of the inputs of the target instruction. As an input param, it specifies the expected instruction data length and number of accounts. After syscall execution, the fields are set to the actual values.</li><li><code>r3</code> is filled in with the program ID invoked by the sibling instruction.</li><li>If the specified data length in <code>r2</code> matches the actual invocation, copies the instruction bytes to <code>r4</code> and the accounts meta list to <code>r5</code>.</li></ul><pre><code class="language-C">typedef struct {
+  uint64_t data_len;
+  uint64_t num_accounts;
+} SolProcessedSiblingInstruction;
+
+typedef struct {
+  SolPubkey pubkey;
+  bool is_signer; /* one byte */
+  bool is_writable; /* one byte */
+} SolAccountMeta;
+
+bool sol_get_processed_sibling_instruction(
+        /* r1 */ int index,
+        /* r2 */ SolProcessedSiblingInstruction *meta,
+        /* r3 */ SolPubkey *program_id,
+        /* r4 */ void *data,
+        /* r5 */ SolAccountMeta *accounts);</code></pre><h3 id="solgetstackheight">sol_get_stack_height</h3><p>Returns the height of the Sealevel invocation stack, which is <code>1</code> at transaction level and increases for every cross-program invocation. Note that this is unrelated to the SBF call stack. </p><pre><code class="language-C">uint64_t sol_get_stack_height();</code></pre><h3></h3>
+        </div>
+
+            <footer class="gh-article-footer gh-canvas">
+                <nav class="gh-navigation">
+                    <div class="gh-navigation-previous">
+                            <a class="gh-navigation-link" href="/web/20231004144333/https://bpf.wtf/sol-0x03-isa/">
+                                <span class="gh-navigation-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"></line>
+    <polyline points="12 19 5 12 12 5"></polyline>
+</svg> Previous issue</span>
+                                <h4 class="gh-navigation-title">~bpf.sol | 0x03: SBF Instruction Set</h4>
+                            </a>
+                    </div>
+
+                    <div class="gh-navigation-middle"></div>
+
+                    <div class="gh-navigation-next">
+                            <a class="gh-navigation-link" href="/web/20231004144333/https://bpf.wtf/sol-state-history/">
+                                <span class="gh-navigation-label">Next issue <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+</svg></span>
+                                <h4 class="gh-navigation-title">Solana State History</h4>
+                            </a>
+                    </div>
+                </nav>
+            </footer>
+    </article>
+</main>
+
+
+
+            <div class="gh-subscribe">
+                <div class="gh-outer">
+                    <section class="gh-subscribe-inner">
+                            <h3 class="gh-subscribe-title">Subscribe to bpf.wtf</h3>
+
+                            <div class="gh-subscribe-description">Don’t miss out on the latest issues. Sign up now to get access to the library of members-only issues.</div>
+
+                            <a class="gh-subscribe-input" href="#/portal/signup" data-portal="signup">
+                                <div class="gh-subscribe-input-text">
+                                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3.33332 3.33334H16.6667C17.5833 3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667 16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334 2.41666 3.33334 3.33332 3.33334Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.3333 5L9.99999 10.8333L1.66666 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>                                    jamie@example.com
+                                </div>
+                                <div class="gh-subscribe-input-btn">Subscribe</div>
+                            </a>
+                    </section>
+                </div>
+            </div>
+
+        <footer class="gh-foot gh-outer">
+            <div class="gh-foot-inner gh-inner">
+                <div class="gh-copyright">
+                    bpf.wtf © 2023
+                </div>
+
+                <nav class="gh-foot-menu">
+                    <ul class="nav">
+    <li class="nav-about"><a href="https://web.archive.org/web/20231004144333/https://bpf.wtf/about/">About</a></li>
+</ul>
+
+                </nav>
+
+                <div class="gh-powered-by">
+                    <a href="https://web.archive.org/web/20231004144333/https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://web.archive.org/web/20231004144333js_/https://bpf.wtf/assets/built/main.min.js?v=9f2531ced7"></script>
+
+    
+</body>
+
+</html><!--
+     FILE ARCHIVED ON 14:43:33 Oct 04, 2023 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 06:34:50 Mar 31, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.826
+  exclusion.robots: 0.073
+  exclusion.robots.policy: 0.057
+  esindex: 0.014
+  cdx.remote: 70.188
+  LoadShardBlock: 241.302 (3)
+  PetaboxLoader3.datanode: 574.447 (4)
+  PetaboxLoader3.resolve: 229.992 (2)
+  load_resource: 566.647
+  nav: 0.242 (6)
+-->
