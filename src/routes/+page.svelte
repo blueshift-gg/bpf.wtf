@@ -63,7 +63,7 @@
 		Note that the original content may be outdated or conflict with current on-chain behavior,
 		as it was originally written in mid-2022. As such, Blueshift and other open source contributors 
 		will periodically update and maintain this content to ensure it remains accurate. You can see
-		what has been updated from our <a href="https://3f15aaf1.bpf-wtf.pages.dev/" target="_blank">Github repository</a>.
+		what has been updated from our <a href="https://github.com/blueshift-gg/bpf.wtf" target="_blank">Github repository</a>.
 	</p>
 </div>
 
